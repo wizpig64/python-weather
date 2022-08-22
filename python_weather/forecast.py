@@ -365,8 +365,8 @@ class CurrentForecast(BaseForecast):
 class HourlyForecast(BaseForecast):
   def __init__(self, json: dict, format: str):
     # for inheritance purposes
-    json['temp_C'] = json.pop('tempC')
-    json['temp_F'] = json.pop('tempF')
+    json['temp_C'] = json.get('temp_C', None) or json.get('tempC', None)
+    json['temp_F'] = json.get('temp_F', None) or json.get('tempF', None)
 
     super().__init__(json, format)
   
